@@ -1,0 +1,66 @@
+<html ng-app="eventApp">
+    <head>
+        <title>Event Finder</title>
+        <meta charset="UTF-8">
+        <link href="js/libs/bootstrap-3.3.2-dist/css/bootstrap.css" rel ="stylesheet"/>
+        <link href="js/libs/bootstrap-3.3.2-dist/css/bootstrap-theme.css" rel ="stylesheet"/>
+        <script src ="js/libs/angular.js/angular.js"></script>
+        <script src ="js/libs/angular.js/angular-resource.js"></script>
+        <script src ="js/libs/angular.js/angular-locale_ru-ru.js"></script>
+
+        <script>
+            angular.module("eventApp",[])
+               .constant("baseURL", "https://127.0.0.1:8084/javaLabs/jlbmstu/search")
+               .config(["$httpProvider",function($httpProvider){
+        $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
+    }
+])
+                .controller("defaultCtrl", function ($scope, $http,baseURL,$window) {
+                             
+                               $scope.eventList =  [
+{  name: "Dummy1", category: "Test", date:"sdfsd",place: "1.25",time:"10",description:"Группа единомышленников из разных сфер искусства (режиссура, музыка, театр, изобразительное искусство) ставит удивительно теплые и живые детские спектакли. «Космос, или На край Вселенной» — один из них.\n\nВместе с актерами дети отправятся в путешествие по Вселенной, где их непременно ждут невероятные встречи, открытия и новые знания о звездах и планетах, о Луне и Земле. Сила познания и Мечта будет вести наших героев. А мечты, как известно, сбываются, если в них очень верить. Путешествие будет не очень долгим, но невероятно интересным. Сколько звезд на небе? Какие бывают планеты? Как вертится Земля? И что же находится на обратной стороне Луны? Ответы на эти и многие другие вопросы вы получите в ходе космического спектакля.\n\nРассекая просторы других галактик, можно встретиться с теми, кого никак не ожидаешь увидеть. Дети познакомятся с личностями космического масштаба — Николаем Коперником, Джордано Бруно, Галилео Галилеем, которые предстанут не в виде серьезных ученых мужей, а в ярких и харизматичных образах. В космосе еще много неизведанного, поэтому быть космонавтом так увлекательно и так непросто.\n\nВ полет навстречу звездам принимаются смельчаки не младше 7 лет.\n\nПолет длится 1 земной час." }];
+                            
+                $scope.loadData = function (events) {
+
+                    $http.post(baseURL,events).success(function (data) {
+                        $scope.eventList = data;
+                    });
+                };
+
+                $scope.showFullDescr = function (event){
+                    console.log(event.description);
+                    $window.alert(event.description);
+                };
+            });
+            </script>
+         </head>
+    <body ng-controller="defaultCtrl" >
+          <div class="panel panel-primary">
+              <h3 class="panel-heading">Поисковик событий в Москве</h3>
+               
+              </div>
+        <div>
+            <button class="btn  btn-primary" ng-click = "loadData('teaтры')">Театры</button>
+                <button class="btn  btn-primary" ng-click = "loadData('концерты')">Концерты</button>
+                <button class="btn  btn-primary" ng-click = "loadData('выставки')">Выставки</button>
+                <button class="btn  btn-primary" ng-click = "loadData('лекции')">Лекции</button>
+                <button class="btn  btn-primary" ng-click = "loadData('клубы')">Клубы</button>
+                <div >
+                <table class="table table-striped table-bordered">
+                    <thead><tr><th>Название</th><th>Дата</th><th>Время</th><th>Адрес</th></tr></thead>
+                    <tbody>
+                        
+                        <tr ng-repeat="event in eventList">
+                            <td>{{event.name}}</td>
+                            <td>{{event.date}}</td>
+                            <td>{{event.time}}</td>
+                            <td>{{event.place}}</td>
+                            <td> <button class="btn btn-xs btn-primary" ng-click = "showFullDescr(event)">Описание</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+            </div>
+    </body>
+</html>
