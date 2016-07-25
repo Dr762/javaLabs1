@@ -23,14 +23,15 @@
         </cxf:features>
     </cxf:bus>
     <import resource="classpath:META-INF/cxf/cxf.xml"/>
+
     <context:property-placeholder/>
     <context:annotation-config/>
     <bean class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer"/>
     <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer"/>
     
-    <jaxrs:server  id="javaLabs" address="/jlbmstu/" >
+    <jaxrs:server  id="javaLabs" address="/events/eventSearch" >
         <jaxrs:serviceBeans>
-            <bean class="org.abondar.javaLabs.ServiceBean" />
+            <bean class="org.abondar.experimental.eventsearch.ServiceBean" />
         </jaxrs:serviceBeans>
          <jaxrs:providers>
             <bean id="jsonProvider" class="org.apache.cxf.jaxrs.provider.json.JSONProvider">
