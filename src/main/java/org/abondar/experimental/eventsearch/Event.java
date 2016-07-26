@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * @author alex
  */
 
-public class EventBean {
+public class Event {
     
     private String name;
     private String category;

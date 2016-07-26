@@ -83,7 +83,7 @@ public class EventFinder {
 
             Document dc = Jsoup.connect("https://afisha.yandex.ru/msk/events/" + eventId + "/").get();
 
-            EventBean eb = new EventBean();
+            Event eb = new Event();
             eb.setEventID(eventId);
             eb.setCategory(eventTypes.get(evType));
             Elements elems = dc.select("meta");
@@ -187,9 +187,9 @@ public class EventFinder {
         return res;
     }
 
-    public void formJson(EventBean eb) {
+    public void formJson(Event eb) {
 
-        File fil = new File("/home/alex/NetBeansProjects/JavaLabs/jsons/" + eb.getEventID() + ".json");
+        File fil = new File("/home/abondar/EventSearch/jsons/" + eb.getEventID() + ".json");
         try {
             FileOutputStream fos = new FileOutputStream(fil);
             ObjectMapper om = new ObjectMapper();
@@ -198,12 +198,12 @@ public class EventFinder {
         } catch (IOException ex) {
             Logger.getLogger(EventFinder.class.getName()).log(Level.SEVERE, null, ex);
 
-        } 
-    
-    
+        }
+
+
 }
 
-      public void geoCode(EventBean eb) {
+      public void geoCode(Event eb) {
         try{
           String addr = eb.getPlace().replace(" ", "%20"); 
             

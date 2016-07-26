@@ -2,15 +2,15 @@
     <head>
         <title>Event Finder</title>
         <meta charset="UTF-8">
-        <link href="js/libs/bootstrap-3.3.2-dist/css/bootstrap.css" rel ="stylesheet"/>
-        <link href="js/libs/bootstrap-3.3.2-dist/css/bootstrap-theme.css" rel ="stylesheet"/>
-        <script src ="js/libs/angular.js/angular.js"></script>
-        <script src ="js/libs/angular.js/angular-resource.js"></script>
-        <script src ="js/libs/angular.js/angular-locale_ru-ru.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" rel ="stylesheet"/>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7//css/bootstrap-theme.css" rel ="stylesheet"/>
+        <script src ="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+        <script src ="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js"></script>
+        <script src ="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.5.8/angular-locale_os-ru.js"></script>
 
         <script>
             angular.module("eventApp",[])
-               .constant("baseURL", "https://127.0.0.1:8080/events/jlbmstu/search")
+               .constant("baseURL", "http://localhost:8080/eventSearch/search")
                .config(["$httpProvider",function($httpProvider){
         $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
     }

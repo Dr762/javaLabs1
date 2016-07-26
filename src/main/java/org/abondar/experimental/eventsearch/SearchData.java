@@ -23,7 +23,6 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
-import org.apache.lucene.document.LongField;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.DirectoryReader;
@@ -37,12 +36,9 @@ import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TermQuery;
-import org.apache.lucene.search.TopScoreDocCollector;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
-import org.codehaus.jettison.json.JSONArray;
 
 /**
  *
@@ -50,7 +46,7 @@ import org.codehaus.jettison.json.JSONArray;
  */
 public class SearchData {
 
-    private final String indexPath = "/home/alex/NetBeansProjects/JavaLabs/jsons/";
+    private final String indexPath = "/home/abondar/EventSearch/jsons/";
     private final Boolean create = true;
 
     public void IndexFiles() {
@@ -104,7 +100,7 @@ public class SearchData {
             Field pathField = new StringField("path", file.toString(), Field.Store.YES);
             doc.add(pathField);
             ObjectMapper mapper = new ObjectMapper();
-            EventBean eb = mapper.readValue(new File(file.toString()), EventBean.class);
+            Event eb = mapper.readValue(new File(file.toString()), Event.class);
             doc.add(new TextField("category", eb.getCategory(), Field.Store.YES));
 
             if (iw.getConfig().getOpenMode() == OpenMode.CREATE) {

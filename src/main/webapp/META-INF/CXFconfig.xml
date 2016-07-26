@@ -1,23 +1,11 @@
-<beans xmlns="http://www.springframework.org/schema/beans" 
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-       xmlns:jaxrs="http://cxf.apache.org/jaxrs" 
-       xmlns:cxf="http://cxf.apache.org/core" 
-       xmlns:context="http://www.springframework.org/schema/context" 
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xmlns:cxf="http://cxf.apache.org/core"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation=" http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
 
-    <!--<beans 
-        xmlns="http://www.springframework.org/schema/beans" 
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-        xmlns:jaxws="http://cxf.apache.org/jaxws" 
-        xmlns:jaxrs="http://cxf.apache.org/jaxrs" 
-        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
-    http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
-    http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
-    ">-->
-
-    <!-- Configuration goes here! -->
-    
-      <cxf:bus>
+    <cxf:bus>
         <cxf:features>
             <cxf:logging/>
         </cxf:features>
@@ -26,29 +14,29 @@
 
     <context:property-placeholder/>
     <context:annotation-config/>
-    <bean class="org.springframework.web.context.support.ServletContextPropertyPlaceholderConfigurer"/>
+
     <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer"/>
-    
-    <jaxrs:server  id="javaLabs" address="/events/eventSearch" >
+
+    <jaxrs:server  id="eventSearch" address="/eventSearch" >
         <jaxrs:serviceBeans>
             <bean class="org.abondar.experimental.eventsearch.ServiceBean" />
         </jaxrs:serviceBeans>
-         <jaxrs:providers>
+        <jaxrs:providers>
             <bean id="jsonProvider" class="org.apache.cxf.jaxrs.provider.json.JSONProvider">
                 <property name="dropRootElement" value="true" />
                 <property name="supportUnwrapped" value="true" />
                 <property name="dropCollectionWrapperElement" value="true"/>
                 <property name="SerializeAsArray" value="true"/>
-         
+
             </bean>
-        </jaxrs:providers>        
-          
+        </jaxrs:providers>
+
         <jaxrs:extensionMappings>
             <entry key="json" value="application/json"/>
             <entry key="xml" value="application/xml"/>
         </jaxrs:extensionMappings>
         <jaxrs:languageMappings>
-            <entry key="en" value="en-gb"/>  
+            <entry key="en" value="en-gb"/>
         </jaxrs:languageMappings>
     </jaxrs:server>
 </beans>

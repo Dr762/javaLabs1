@@ -29,18 +29,9 @@ import org.apache.commons.logging.LogFactory;
 
 public class ServiceBean {
 
-    private static final Log LOG = LogFactory.getLog(ServiceBean.class);
 
   private final SearchData sd = new SearchData();
-  
-    @POST
-    @Path("/find")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response findPlaces() {
-       
-                       
-        return Response.ok().build();
-    }
+
 
     @GET
     @Path("/site")
@@ -62,10 +53,8 @@ public class ServiceBean {
     @Produces(MediaType.APPLICATION_JSON)
     public Response indexData() {
 
-       
         sd.IndexFiles();
-        
-        
+
         return Response.ok().build();
 
     }
@@ -73,7 +62,6 @@ public class ServiceBean {
     
     @POST
     @Path("/search")
-
     @Produces(MediaType.APPLICATION_JSON)
     public Response searchData(String param) throws IOException,  org.apache.lucene.queryparser.classic.ParseException {
 
@@ -89,7 +77,7 @@ public class ServiceBean {
       sb.deleteCharAt(sb.toString().length()-1);
       sb.append("]");
      String res = sb.toString().replace(";", ",");
-        System.out.println(sb.toString());
+       System.out.println(sb.toString());
        return Response.ok(res).build();
 
     }
