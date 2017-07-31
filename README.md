@@ -9,7 +9,7 @@ How it works:
 3) Client can search 
 
 Used: 
-Apache CXF - REST API
-JSOUP - html parsing
-Lucene - idexing
-AngularJS + Bootstrap - client
+- Apache CXF - REST API
+- JSOUP - HTML parsing
+- Lucene - indexing
+- AngularJS + Bootstrap - client
